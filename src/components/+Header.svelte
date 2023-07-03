@@ -4,7 +4,7 @@
     let currentTheme;
     
     function toggleTheme() {
-        currentTheme = currentTheme === "cmyk" ? "dracula" : "cmyk";
+        currentTheme = currentTheme === "autumn" ? "dracula" : "autumn";
         document.documentElement.setAttribute("data-theme", currentTheme);
         localStorage.setItem('theme', currentTheme)
         currentTheme = localStorage.getItem('theme');
@@ -12,7 +12,7 @@
 
     function updateTheme() {
         currentTheme = localStorage.getItem('theme');
-        if (currentTheme === "cmyk") {
+        if (currentTheme === "autumn") {
             document.documentElement.setAttribute("data-theme", currentTheme);
         } else {
             document.documentElement.setAttribute("data-theme", "dracula");
@@ -24,6 +24,10 @@
 
     function goToSignUpPage(){
         goto('/users/new')
+    }
+
+    function goToHomePage(){
+        goto('/')
     }
 
     updateTheme();
@@ -61,7 +65,7 @@
         </ul>
       </div>
     </div>
-    <button href="/" class="btn btn-ghost gap-0 inline-flex text-lg md:text-2xl">
+    <button on:click={goToHomePage} class="btn btn-ghost gap-0 inline-flex text-lg md:text-2xl">
         <!-- <span class="lowercase">side</span> 
         <span class="text-primary lowercase first-letter:uppercase">quest</span> -->
         <span class="lowercase first-letter:uppercase">Discover</span>
