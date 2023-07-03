@@ -4,7 +4,7 @@
     let currentTheme;
     
     function toggleTheme() {
-        currentTheme = currentTheme === "cmyk" ? "dracula" : "cmyk";
+        currentTheme = currentTheme === "autumn" ? "dracula" : "autumn";
         document.documentElement.setAttribute("data-theme", currentTheme);
         localStorage.setItem('theme', currentTheme)
         currentTheme = localStorage.getItem('theme');
@@ -12,7 +12,7 @@
 
     function updateTheme() {
         currentTheme = localStorage.getItem('theme');
-        if (currentTheme === "cmyk") {
+        if (currentTheme === "autumn") {
             document.documentElement.setAttribute("data-theme", currentTheme);
         } else {
             document.documentElement.setAttribute("data-theme", "dracula");
@@ -24,6 +24,10 @@
 
     function goToSignUpPage(){
         goto('/users/new')
+    }
+
+    function goToHomePage(){
+        goto('/')
     }
 
     updateTheme();
@@ -61,17 +65,17 @@
         </ul>
       </div>
     </div>
-    <button href="/" class="btn btn-ghost gap-0 inline-flex text-lg md:text-2xl">
+    <button on:click={goToHomePage} class="btn btn-ghost gap-0 inline-flex text-lg md:text-2xl">
         <!-- <span class="lowercase">side</span> 
         <span class="text-primary lowercase first-letter:uppercase">quest</span> -->
         <span class="lowercase first-letter:uppercase">Discover</span>
-        <span class=" lowercase first-letter:uppercase">Fy</span>
+        <span class="lowercase first-letter:uppercase">Fy</span>
     </button>
       
     <div class="navbar-end">
         <button on:click={toggleTheme}>
             <!-- svelte-ignore a11y-label-has-associated-control -->
-            <label class="btn btn-ghost btn-circle overflow-hidden relative swap swap-rotate">
+            <label class="btn btn-ghost btn-circle overflow-hidden relative swap swap-rotate mr-1">
                 <!-- this hidden checkbox controls the state -->
                 {#if currentTheme == "dracula"}
                 <!-- sun icon -->
@@ -83,8 +87,10 @@
             </label>
         </button>
         {#if !$loggedIn} 
-            <button on:click={goToSignInPage} class="btn btn-ghost ">Sign In</button>
-            <button on:click={goToSignUpPage} class="btn btn-ghost">Sign up</button>
+        <div class="justify">
+            <button on:click={goToSignInPage} class="btn btn-primary">Sign In</button>
+            <button on:click={goToSignUpPage} class="btn btn-accent">Sign up</button>
+        </div>
         {:else}
             <button on:click={logOut} class="btn btn-ghost">Sign Out</button>
         {/if}
