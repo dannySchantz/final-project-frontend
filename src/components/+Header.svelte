@@ -22,6 +22,10 @@
         goto('/signin')
     }
 
+    function goToSignUpPage(){
+        goto('/users/new')
+    }
+
     updateTheme();
 </script>
 <div class="navbar bg-base-100">
@@ -78,9 +82,9 @@
                 {/if}
             </label>
         </button>
-        {#if !$loggedIn}
+        {#if !$loggedIn} 
             <button on:click={goToSignInPage} class="btn btn-ghost ">Sign In</button>
-            <button class="btn btn-ghost">Sign up</button>
+            <button on:click={goToSignUpPage} class="btn btn-ghost">Sign up</button>
         {:else}
             <button on:click={logOut} class="btn btn-ghost">Sign Out</button>
         {/if}
