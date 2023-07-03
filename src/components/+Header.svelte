@@ -1,11 +1,24 @@
 <script>
-    let currentTheme = localStorage.getItem('theme')
+    import { loggedIn } from '../utils/auth.js'
+    let currentTheme;
     
     function toggleTheme() {
         currentTheme = currentTheme === "cmyk" ? "dracula" : "cmyk";
         document.documentElement.setAttribute("data-theme", currentTheme);
         localStorage.setItem('theme', currentTheme)
+        currentTheme = localStorage.getItem('theme');
     }
+
+    function updateTheme() {
+        currentTheme = localStorage.getItem('theme');
+        if (currentTheme === "cmyk") {
+            document.documentElement.setAttribute("data-theme", currentTheme);
+        } else {
+            document.documentElement.setAttribute("data-theme", "dracula");
+        }
+    }
+
+    updateTheme();
 </script>
 <div class="navbar bg-base-100">
     <div class="navbar-start">
@@ -17,9 +30,16 @@
         </label>
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <ul tabindex="0" class="z-10 menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+        {#if $loggedIn}
           <li><a  href="/">Homepage</a></li>
-          <li><a href="/">Portfolio</a></li>
           <li><a href="/">About</a></li>
+          <li><a href="/">Sign Out</a></li>
+        {:else}
+            <li><a  href="/">Homepage</a></li>
+            <li><a href="/">About</a></li>
+            <li><a href="/">Login</a></li>
+            <li><a href="/">Sign Up</a></li>
+        {/if}
         </ul>
       </div>
     </div>
