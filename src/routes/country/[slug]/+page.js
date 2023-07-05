@@ -5,7 +5,7 @@ export async function load({ fetch, params }) {
     const res = await resp.json();
     if (resp.status == 200) {
         return {
-            post: res
+            posts: res
         }
     } else {
         return {
