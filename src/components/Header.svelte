@@ -42,13 +42,10 @@
         <label tabindex="0" class="btn btn-ghost">Experience</label>
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <ul tabindex="0" class="z-10 menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a  href="/">Homepage</a></li>
-            <li><a href="/">About</a></li>
-            <li><a href="/">Sign Out</a></li>
-            <li><a  href="/">Homepage</a></li>
-            <li><a href="/">About</a></li>
-            <li><a href="/">Login</a></li>
-            <li><a href="/">Sign Up</a></li>
+            <li><a href="/tags/climbing">Climbing</a></li>
+            <li><a href="/tags/running">Running</a></li>
+            <li><a href="/tags/views">Views</a></li>
+            <li><a  href="/tags/hiking">Hiking</a></li>
         </ul>
       </div>
     </div>

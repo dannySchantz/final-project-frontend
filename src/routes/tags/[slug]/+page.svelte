@@ -1,16 +1,6 @@
 <script>
     export let data;
     // console.log(data)
-    // let slug = pa
-    function checkForTags(tagsArray, currentTag) {
-        for (let i = 0; i < tagsArray.length; i++) {
-            if (tagsArray[i] === currentTag) {
-                return true
-            }
-            
-        }
-        return false
-    }
 </script>
 
 <div class="w-2/3 align-middle ml-[16.3333333%]">
@@ -42,4 +32,3 @@
         <!-- {/if} -->
     {/each}
 </div>
-<!-- {/each} -->
