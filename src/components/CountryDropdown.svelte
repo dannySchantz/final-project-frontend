@@ -13,7 +13,9 @@
     <!-- svelte-ignore a11y-label-has-associated-control -->
     <label tabindex="0" class="btn btn-ghost">Countries</label>
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+
     <ul tabindex="0" class="z-10 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+ 
             <li><a href="/country/Afghanistan">Afghanistan</a></li>
             <li><a href="/country/Albania">Albania</a></li>
             <li><a href="/country/Algeria">Algeria</a></li>

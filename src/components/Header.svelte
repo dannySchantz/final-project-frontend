@@ -1,6 +1,7 @@
 <script>
     import { loggedIn, logOut } from '../utils/auth.js'
     import { goto } from '$app/navigation'    
+    import CountryDropdown  from './CountryDropdown.svelte'
     let currentTheme;
     
     function toggleTheme() {
@@ -34,21 +35,7 @@
 </script>
 <div class="navbar bg-base-100">
     <div class="navbar-start">
-      <div class="dropdown">
-        <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-        <!-- svelte-ignore a11y-label-has-associated-control -->
-        <label tabindex="0" class="btn btn-ghost">Countries</label>
-        <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-        <ul tabindex="0" class="z-10 menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a  href="/">Homepage</a></li>
-            <li><a href="/">About</a></li>
-            <li><a href="/">Sign Out</a></li>
-            <li><a  href="/">Homepage</a></li>
-            <li><a href="/">About</a></li>
-            <li><a href="/">Login</a></li>
-            <li><a href="/">Sign Up</a></li>
-        </ul>
-      </div>
+      <CountryDropdown />
       <div class="dropdown">
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <!-- svelte-ignore a11y-label-has-associated-control -->
