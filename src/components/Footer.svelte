@@ -12,7 +12,7 @@ margin-top:50px;
       line-height: normal;
 
       "
-    >DiscoverFly</p>
+    >DiscoverFy</p>
     <p
       class="align-middle flex items-center justify-center"
       style="
@@ -25,7 +25,7 @@ margin-top:50px;
 
       "
     
-    >© 2023 DiscoverFly - All Rights Reserved</p>
+    >© 2023 DiscoverFy - All Rights Reserved</p>
     <div class="grid grid-cols-2 flex" >
       <a href="/" class="flex items-center justify-center"
       style="
