@@ -6,7 +6,7 @@ export async function load({ fetch, params }) {
     if (resp.status == 200) {
         return {
             posts: res,
-            slug: params.slug
+            reformattedCountryName: reformatCountryName(params.slug)
         }
     } else {
         return {
@@ -14,3 +14,14 @@ export async function load({ fetch, params }) {
         }   
     } 
 }
+
+
+function reformatCountryName(countryName) {
+    let reformattedName = countryName.replace(/-/g, ' ').replace(/(^|\s)\w/g, letter => letter.toUpperCase());
+    if (reformattedName === "Virgin Islands British") {
+        reformattedName = "Virgin Islands, British"
+    } else if ( reformattedName === "Virgin Islands Us") {
+        reformattedName = "Virgin Islands, U.S."
+    }
+    return reformattedName;
+  }

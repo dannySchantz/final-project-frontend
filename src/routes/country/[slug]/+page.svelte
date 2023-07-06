@@ -16,10 +16,11 @@
     function goToPostPage(postId) {
         goto(`/posts/${postId}`)
     }
+
 </script>
 
 <div class="w-2/3 align-middle ml-[16.3333333%]">
-    <div class="text-center font-extrabold text-3xl mt-5 first-letter:uppercase">{data.slug}</div>
+    <div class="text-center font-extrabold text-3xl mt-5 first-letter:uppercase">{data.reformattedCountryName}</div>
     <!-- <div class="text-center font-extrabold text-3xl mt-5">{slug}</div> -->
     <div class="text-center mt-5"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae facere, quasi atque nulla vel quisquam quibusdam voluptatibus voluptate labore nesciunt adipisci soluta maxime temporibus corporis dicta, nihil et voluptatem eius.</div>
 </div>
