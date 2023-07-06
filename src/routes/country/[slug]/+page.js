@@ -17,11 +17,15 @@ export async function load({ fetch, params }) {
 
 
 function reformatCountryName(countryName) {
-    let reformattedName = countryName.replace(/-/g, ' ').replace(/(^|\s)\w/g, letter => letter.toUpperCase());
+    let reformattedName = countryName.replace(/-/g, ' ').replace(/\b(?!and)\w/g, letter => letter.toUpperCase());
+  
     if (reformattedName === "Virgin Islands British") {
-        reformattedName = "Virgin Islands, British"
-    } else if ( reformattedName === "Virgin Islands Us") {
-        reformattedName = "Virgin Islands, U.S."
+      reformattedName = "Virgin Islands, British";
+    } else if (reformattedName === "Virgin Islands Us") {
+      reformattedName = "Virgin Islands, U.S.";
     }
+  
     return reformattedName;
-  }
+}
+  
+  

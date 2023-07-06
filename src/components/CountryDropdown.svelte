@@ -15,7 +15,7 @@
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 
 
-    <ul tabindex="0" class="z-10 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+    <ul tabindex="0" class="z-10 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-[400%]">
 
             <li><a href="/country/Afghanistan">Afghanistan</a></li>
             <li><a href="/country/Albania">Albania</a></li>

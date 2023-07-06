@@ -2,9 +2,9 @@
     // export let data 
 </script>
 
-<div class="flex justify-center pt-5">
+<div class="flex justify-center pt-5 w-screen">
     <div style="display: flex; align-items: center; position: relative;">
-      <img src="https://www.qantas.com/content/travelinsider/en/explore/south-pacific/reasons-to-visit-new-caledonia/_jcr_content/parsysTop/hero.img.full.medium.jpg/1559623611557.jpg" alt="" style="width: 1920px; height: 480px;" class="relative" />
+      <img src="https://www.qantas.com/content/travelinsider/en/explore/south-pacific/reasons-to-visit-new-caledonia/_jcr_content/parsysTop/hero.img.full.medium.jpg/1559623611557.jpg" alt="" class="relative w-screen h-[60vh]" />
   
       <!-- Text overlay -->
       <div style="position: absolute; top: 100px; left: 150px; color: white; font-size: 24px; background-color: rgba(0, 0, 0, 0.7); padding: 10px; max-width: 470px; max-height: 270px; border-radius: 20px">
