@@ -2,7 +2,7 @@
 border-top:1px solid #DDDDDD;
 margin-top:50px;
 " >
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 mx-auto pt-10 pb-10 align-middle" style="width: 1200px;">
+  <div class=" ml-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 mx-auto pt-10 pb-10 align-middle text-primary-content w-screen">
     <p
       style="
       color: #000;
@@ -14,7 +14,7 @@ margin-top:50px;
       "
     >DiscoverFy</p>
     <p
-      class="align-middle flex items-center justify-center"
+      class="align-middle flex items-center justify-center text-primary-content"
       style="
       color: #637381;
       font-size: 15px;
@@ -27,7 +27,7 @@ margin-top:50px;
     
     >© 2023 DiscoverFy - All Rights Reserved</p>
     <div class="grid grid-cols-2 flex" >
-      <a href="/" class="flex items-center justify-center"
+      <a href="/" class="flex items-center justify-center text-primary-content"
       style="
         color: #212B36;
         font-size: 16px;
@@ -37,7 +37,7 @@ margin-top:50px;
         line-height: normal;
       ">Countries</a>
       <a href="/"  
-      class="flex items-center justify-center"
+      class="flex items-center justify-center text-primary-content "
       style="
         color: #212B36;
         font-size: 16px;

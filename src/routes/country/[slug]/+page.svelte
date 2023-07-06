@@ -1,15 +1,20 @@
 <script>
+    import { goto } from '$app/navigation';
     export let data;
     // console.log(data)
     // let slug = pa
-    function checkForTags(tagsArray, currentTag) {
-        for (let i = 0; i < tagsArray.length; i++) {
-            if (tagsArray[i] === currentTag) {
-                return true
-            }
+    // function checkForTags(tagsArray, currentTag) {
+    //     for (let i = 0; i < tagsArray.length; i++) {
+    //         if (tagsArray[i] === currentTag) {
+    //             return true
+    //         }
             
-        }
-        return false
+    //     }
+    //     return false
+    // }
+
+    function goToPostPage(postId) {
+        goto(`/posts/${postId}`)
     }
 </script>
 
