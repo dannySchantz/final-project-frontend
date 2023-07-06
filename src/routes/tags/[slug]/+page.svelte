@@ -2,7 +2,7 @@
     export let data;
     import { goto } from '$app/navigation';
     // console.log(data)
-    export function goToPostPage(postId) {
+    function goToPostPage(postId) {
         goto(`/posts/${postId}`)
     }
 </script>
