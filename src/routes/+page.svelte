@@ -5,9 +5,9 @@
     function searchTime(evt) {
         evt.preventDefault()
         if (evt.target['country'].value === null) {
-          goto(`/country/${evt.target['country'].value}`)
+          goto(`/tags/${evt.target['tags'].value}`)
         } else if (evt.target['tags'].value === null) {
-          goto(`/country/${evt.target['tags'].value}`)
+          goto(`/country/${evt.target['country'].value}`)
         }
         goto(`/country-tag/${evt.target['country'].value}_${evt.target['tags'].value}`)
     }
