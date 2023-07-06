@@ -1,13 +1,11 @@
 import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
-// let countryName = 'Malaysia' 
-export async function load({ fetch, params }) {
-    const resp = await fetch(PUBLIC_BACKEND_BASE_URL + `/posts/country/${params.slug}`)
+export async function load({ fetch, params },) {
+    const resp = await fetch(PUBLIC_BACKEND_BASE_URL + `/posts/countryTag/${params.slug}`)
     const res = await resp.json();
     if (resp.status == 200) {
         return {
             posts: res,
-            reformattedCountryName: reformatCountryName(params.slug),
-            slug: params.slug
+            reformattedCountryName: reformatCountryName(params.slug)
         }
     } else {
         return {
@@ -15,7 +13,6 @@ export async function load({ fetch, params }) {
         }   
     } 
 }
-
 
 function reformatCountryName(countryName) {
     let reformattedName = countryName.replace(/-/g, ' ').replace(/\b(?!and)\w/g, letter => letter.toUpperCase());
@@ -28,5 +25,3 @@ function reformatCountryName(countryName) {
   
     return reformattedName;
 }
-  
-  

@@ -2,7 +2,7 @@
 border-top:1px solid #DDDDDD;
 margin-top:50px;
 " >
-  <div class=" ml-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 mx-auto pt-10 pb-10 align-middle text-primary-content w-screen">
+  <div class="pl-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 mx-auto pt-10 pb-10 align-middle text-primary-content w-screen">
     <p
       style="
       color: #000;

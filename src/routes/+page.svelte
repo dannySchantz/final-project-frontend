@@ -1,27 +1,40 @@
 <script>
     // export let data 
+    import { goto } from '$app/navigation'    
+
+    function searchTime(evt) {
+        evt.preventDefault()
+        if (evt.target['country'].value === null) {
+          goto(`/country/${evt.target['country'].value}`)
+        } else if (evt.target['tags'].value === null) {
+          goto(`/country/${evt.target['tags'].value}`)
+        }
+        goto(`/country-tag/${evt.target['country'].value}_${evt.target['tags'].value}`)
+    }
 </script>
 
-<div class="flex justify-center pt-5 w-screen">
-    <div style="display: flex; align-items: center; position: relative;">
-      <img src="https://www.qantas.com/content/travelinsider/en/explore/south-pacific/reasons-to-visit-new-caledonia/_jcr_content/parsysTop/hero.img.full.medium.jpg/1559623611557.jpg" alt="" class="relative w-screen h-[60vh]" />
-  
-      <!-- Text overlay -->
-      <div style="position: absolute; top: 100px; left: 150px; color: white; font-size: 24px; background-color: rgba(0, 0, 0, 0.7); padding: 10px; max-width: 470px; max-height: 270px; border-radius: 20px">
-        <h1>Your text goes here.</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at efficitur purus, eu vestibulum est. Etiam luctus laoreet venenatis. Nullam pharetra scelerisque scelerisque.</p>
-      </div>
-  
-      <!-- Search box with background -->
-      <div style="position: absolute; top: 100px; right: 150px; background-color: rgba(0, 0, 0, 0.7); width: 470px; height: 240px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 18px; border-radius: 20px">
-        <!-- Search input and button -->
-        <input type="text" name="searchbox" placeholder="Country" style="width: 100%; margin-bottom: 10px; padding: 10px; font-size: 16px;" class="bg-neutral">
-        <input type="text" name="searchbox" placeholder="Experience" style="width: 100%; margin-bottom: 10px; padding: 10px; font-size: 16px;" class="bg-neutral">
-        <button class="search-button" style="width: 100%; padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">Search</button>
-      </div>
+<div class="flex justify-center items-center w-screen">
+  <form class="relative w-full" on:submit={searchTime}>
+    <img src="https://www.qantas.com/content/travelinsider/en/explore/south-pacific/reasons-to-visit-new-caledonia/_jcr_content/parsysTop/hero.img.full.medium.jpg/1559623611557.jpg" alt="" class="w-full h-[60vh]" />
+
+    <!-- Text overlay -->
+    <div class="absolute top-10 left-10 md:top-1/2 md:left-150 transform -translate-y-1/2 text-white text-lg bg-black bg-opacity-70 px-6 py-4 max-w-[470px] md:max-w-[470px] md:max-h-[270px] rounded-lg">
+      <h1>Your text goes here.</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at efficitur purus, eu vestibulum est. Etiam luctus laoreet venenatis. Nullam pharetra scelerisque scelerisque.</p>
     </div>
-  </div>
-  
+
+    <!-- Search box with background -->
+    <div class="absolute top-10 right-10 md:top-1/2 md:right-150 transform -translate-y-1/2 bg-black bg-opacity-70 w-[470px] md:w-[470px] h-[240px] px-6 py-4 flex flex-col items-center justify-center text-white text-lg rounded-lg">
+      <!-- Search input and button -->
+      <input type="text" name="country"  placeholder="Country" class="w-full mb-2 px-4 py-2 text-lg rounded-lg text-gray-400" />
+      <!-- <input type="text" name="searchbox" placeholder="Country" class="w-full mb-2 px-4 py-2 text-lg bg-neutral" /> -->
+      <input type="text" name="tags" placeholder="Experience" class="w-full mb-2 px-4 py-2 text-lg rounded-lg text-gray-400" />
+      <button class="form-submit search-button btn w-full py-2 px-4 rounded-md cursor-pointer text-lg">Search</button>
+    </div>
+  </form>
+</div>
+
+
 
 
   <div class="carousel w-full -mb-12">

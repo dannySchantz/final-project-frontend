@@ -1,21 +1,18 @@
 <script>
-    import {getTokenFromLocalStorage, isLoggedIn} from "../../../utils/auth.js"
-    import {goto} from "$app/navigation"
+    import { getTokenFromLocalStorage, loggedIn} from "../../../utils/auth.js"
+    import { goto } from "$app/navigation"
     import { onMount } from "svelte";
     import CountryDropdownForForms from "../../../components/CountryDropdownForForms.svelte";
 
     let formErrors = {};
 
-    onMount(() => {
-        checkAuthAndRedirect();
-    })
+    checkLoggedIn()
 
-    function checkAuthAndRedirect(){
-        isLoggedIn.subscribe(loggedIn =>{
-            if(!loggedIn) {
-                goto("/");
-            }
-        })
+    function checkLoggedIn() {
+        if ($loggedIn) {
+            goto('/');
+            alert('You are already logged-in, no need to signup :p')
+        }
     }
 
     function afterUpload(){
