@@ -1,6 +1,10 @@
 <script>
     export let data;
+    import { goto } from '$app/navigation';
     // console.log(data)
+    export function goToPostPage(postId) {
+        goto(`/posts/${postId}`)
+    }
 </script>
 
 <div class="w-2/3 align-middle ml-[16.3333333%]">
@@ -12,7 +16,7 @@
 <!-- <div class="font-extrabold ml-20 mt-10 text-2xl">{tags[index]}</div> -->
 <div class="carousel w-full h-full carousel-center p-4 space-x-4 rounded-box">
     {#each data.posts as post}
-        <div class="carousel-item relative w-[30%]">
+        <button class="carousel-item relative w-[30%] hover:scale-[1.05] transition-transform duration-300" on:click={goToPostPage(post.id)}>
             <div class=" gap-10 mx-auto pt-10 pb-10 self-start">
                 <div class="card w-fit bg-base-100 shadow-black shadow-2xl">
                     <!-- <figure><img src={post.file} alt="hi"/></figure> -->
@@ -22,11 +26,11 @@
                         <p>{post.description}</p>
                         <div class="card-actions justify-end"></div>
                         {#each post.tags as tag}
-                            <div class="badge-primary badge">{tag}</div>
+                            <div class="badge-primary badge text-primary-content">{tag}</div>
                         {/each}
                     </div>
                 </div>
             </div>
-        </div>
+        </button>
     {/each}
 </div>
