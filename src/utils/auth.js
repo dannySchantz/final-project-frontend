@@ -13,6 +13,10 @@ export function logOut() {
   return true;
 }
 
+export function goToPostPage(postId) {
+    goto(`/posts/${postId}`)
+}
+
 export const loggedIn = writable(false);
 
 
@@ -45,7 +49,7 @@ export async function logInUser(email, password) {
                 'accessToken': res.accessToken,
             })
         );
-    loggedIn.set(true)
+        loggedIn.set(true)
         return {
             success: true,
             res: res,
@@ -61,5 +65,5 @@ export async function isLoggedIn() {
     if (!getTokenFromLocalStorage()) {
         return false;
     } loggedIn.set(true)
-        return true
+    return true
 }   

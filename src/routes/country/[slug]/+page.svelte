@@ -1,5 +1,6 @@
 <script>
-    import { goto } from '$app/navigation';
+    // import { goto } from '$app/navigation';
+    import { goToPostPage } from '../../../utils/auth.js';
     export let data;
     // console.log(data)
     // let slug = pa
@@ -13,9 +14,6 @@
     //     return false
     // }
 
-    function goToPostPage(postId) {
-        goto(`/posts/${postId}`)
-    }
     
 </script>
 

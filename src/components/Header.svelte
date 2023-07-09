@@ -2,7 +2,7 @@
     import { loggedIn, logOut } from '../utils/auth.js'
     import { goto } from '$app/navigation'    
     import CountryDropdown  from './CountryDropdown.svelte'
-    let currentTheme;
+    export let currentTheme;
     
     function toggleTheme() {
         currentTheme = currentTheme === "autumn" ? "dracula" : "autumn";
@@ -30,33 +30,21 @@
     function goToHomePage(){
         goto('/')
     }
+    function goToUploadPage(){
+        goto('/posts/new')
+    }
 
     updateTheme();
 </script>
-<div class="navbar bg-base-100">
-    <div class="navbar-start">
-      <CountryDropdown />
-      <div class="dropdown">
-        <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-        <!-- svelte-ignore a11y-label-has-associated-control -->
-        <label tabindex="0" class="btn btn-ghost">Experience</label>
-        <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-        <ul tabindex="0" class="z-10 menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a href="/tags/climbing">Climbing</a></li>
-            <li><a href="/tags/running">Running</a></li>
-            <li><a href="/tags/views">Views</a></li>
-            <li><a  href="/tags/hiking">Hiking</a></li>
-        </ul>
-      </div>
-    </div>
-    <button on:click={goToHomePage} class="btn btn-ghost gap-0 inline-flex text-lg md:text-2xl">
+<div class="navbar bg-base-100 ">
+    <button on:click={goToHomePage} class="btn btn-ghost text-lg md:text-2xl navbar-start">
         <!-- <span class="lowercase">side</span> 
         <span class="text-primary lowercase first-letter:uppercase">quest</span> -->
         <span class="lowercase first-letter:uppercase">Discover</span>
         <span class="lowercase first-letter:uppercase">Fy</span>
     </button>
       
-    <div class="navbar-end">
+    <div class="navbar-end gap-1">
         <button on:click={toggleTheme}>
             <!-- svelte-ignore a11y-label-has-associated-control -->
             <label class="btn btn-ghost btn-circle overflow-hidden relative swap swap-rotate mr-1">
@@ -71,11 +59,12 @@
             </label>
         </button>
         {#if !$loggedIn} 
-        <div class="justify">
-            <button on:click={goToSignInPage} class="btn btn-primary">Sign In</button>
+        <div class="">
+            <button on:click={goToSignInPage} class="btn btn-ghost">Sign In</button>
             <button on:click={goToSignUpPage} class="btn btn-accent">Sign up</button>
         </div>
         {:else}
+            <button class="btn btn-ghost" on:click={goToUploadPage}>Upload</button>
             <button on:click={logOut} class="btn btn-ghost">Sign Out</button>
         {/if}
     </div>

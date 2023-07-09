@@ -55,7 +55,6 @@
         //   postSignUp();
         } else {
           isLoading = false
-          loggedIn.set(false)
           throw 'Sign up succeeded but authentication failed';
         }
       } else {
