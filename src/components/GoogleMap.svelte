@@ -16,7 +16,7 @@
       const geocodingUrl =
         'https://maps.googleapis.com/maps/api/geocode/json?address=' +
         encodeURIComponent(city) +
-        `&key${GOOGLE_MAP_API}SyBh-TssO2P06eGItySF8FPm3q3iYJuyzgQ`;
+        `&key=${GOOGLE_MAP_API}`;
   
       fetch(geocodingUrl)
         .then(function (response) {
@@ -49,7 +49,7 @@
       const geocodingUrl =
         'https://maps.googleapis.com/maps/api/geocode/json?address=' +
         encodeURIComponent(country) +
-        `&key${GOOGLE_MAP_API}SyBh-TssO2P06eGItySF8FPm3q3iYJuyzgQ`;
+        `&key-${GOOGLE_MAP_API}`;
   
       fetch(geocodingUrl)
         .then(function (response) {
@@ -182,7 +182,7 @@
       }
   
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key${GOOGLE_MAP_API}SyBh-TssO2P06eGItySF8FPm3q3iYJuyzgQ`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API}`;
       script.async = true;
       script.defer = true;
       script.onload = initMap; // Call initMap once the script is loaded
