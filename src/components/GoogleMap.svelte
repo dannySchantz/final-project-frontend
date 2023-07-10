@@ -1,5 +1,6 @@
 <script>
     import { onMount } from 'svelte';
+    import {GOOGLE_MAP_API} from '$env/static/public'
   
     let x;
     let map;
@@ -15,7 +16,7 @@
       const geocodingUrl =
         'https://maps.googleapis.com/maps/api/geocode/json?address=' +
         encodeURIComponent(city) +
-        '&key=AIzaSyBh-TssO2P06eGItySF8FPm3q3iYJuyzgQ';
+        `&key=${GOOGLE_MAP_API}`;
   
       fetch(geocodingUrl)
         .then(function (response) {
@@ -48,7 +49,7 @@
       const geocodingUrl =
         'https://maps.googleapis.com/maps/api/geocode/json?address=' +
         encodeURIComponent(country) +
-        `${GOOGLE_MAP_API}`;
+        `&key-${GOOGLE_MAP_API}`;
   
       fetch(geocodingUrl)
         .then(function (response) {
