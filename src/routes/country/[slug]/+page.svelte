@@ -1,5 +1,5 @@
 <script>
-    // import { goto } from '$app/navigation';
+    import { goto } from '$app/navigation';
     import { goToPostPage } from '../../../utils/auth.js';
     export let data;
     // console.log(data)
@@ -30,8 +30,8 @@
         <button class="carousel-item relative w-[30%] hover:scale-[1.05] transition-transform duration-300" on:click={goToPostPage(post.id)}>
             <div class=" gap-10 mx-auto pt-10 pb-10 self-start">
                 <div class="card w-fit bg-base-100 shadow-black shadow-lg">
-                    <!-- <figure><img src={post.file} alt="hi"/></figure> -->
-                    <figure><img src="https://www.qantas.com/content/travelinsider/en/explore/south-pacific/reasons-to-visit-new-caledonia/_jcr_content/parsysTop/hero.img.full.medium.jpg/1559623611557.jpg" alt="" /></figure>
+                    <figure><img src={post.file} alt="hi"/></figure>
+                    <!-- <figure><img src="https://www.qantas.com/content/travelinsider/en/explore/south-pacific/reasons-to-visit-new-caledonia/_jcr_content/parsysTop/hero.img.full.medium.jpg/1559623611557.jpg" alt="" /></figure> -->
                     <div class="card-body">
                         <h2 class="card-title">{post.title}</h2>
                         <p class="flex justify-self-start">{post.description}</p>

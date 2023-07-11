@@ -36,10 +36,8 @@
 
     updateTheme();
 </script>
-<div class="navbar bg-base-100 ">
-    <button on:click={goToHomePage} class="btn btn-ghost text-lg md:text-2xl navbar-start">
-        <!-- <span class="lowercase">side</span> 
-        <span class="text-primary lowercase first-letter:uppercase">quest</span> -->
+<div class="navbar flex justify-between bg-base-100 backdrop-blur z-10 bg-opacity-60 sm:text-lg">
+    <button on:click={goToHomePage} class="btn btn-ghost sm:text-2xl md:text-2xl navbar-start w-fit gap-0">
         <span class="lowercase first-letter:uppercase">Discover</span>
         <span class="lowercase first-letter:uppercase">Fy</span>
     </button>

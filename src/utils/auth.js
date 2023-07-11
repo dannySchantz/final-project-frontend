@@ -1,5 +1,6 @@
 import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
 import { writable } from 'svelte/store';
+import { goto } from '$app/navigation';
 
 const emptyAuth = {
   'accessToken': '',
