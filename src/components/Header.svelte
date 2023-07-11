@@ -19,6 +19,12 @@
             document.documentElement.setAttribute("data-theme", "dracula");
         }
     }
+    function goToUserPostPage() {
+        let userId = localStorage.getItem('userId')
+        let parsedId = JSON.parse(userId)["userId"]
+        console.log(parsedId)
+        goto(`/posts/userPost/${parsedId}`)
+    }
     function goToSignInPage() {
         goto('/signin')
     }
@@ -45,7 +51,7 @@
     <div class="navbar-end gap-1">
         <button on:click={toggleTheme}>
             <!-- svelte-ignore a11y-label-has-associated-control -->
-            <label class="btn btn-ghost btn-circle overflow-hidden relative swap swap-rotate mr-1">
+            <label class="btn btn-ghost btn-circle relative swap swap-rotate mr-1">
                 <!-- this hidden checkbox controls the state -->
                 {#if currentTheme == "dracula"}
                 <!-- sun icon -->
@@ -62,6 +68,7 @@
             <button on:click={goToSignUpPage} class="btn btn-accent">Sign up</button>
         </div>
         {:else}
+            <button class="btn btn-ghost" on:click={goToUserPostPage}>Your Posts</button>
             <button class="btn btn-ghost" on:click={goToUploadPage}>Upload</button>
             <button on:click={logOut} class="btn btn-ghost">Sign Out</button>
         {/if}

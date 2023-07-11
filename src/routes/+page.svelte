@@ -5,7 +5,6 @@
     import { countries, tags } from './svelte-select-items.js'
     import { goToPostPage } from '../utils/auth.js';
     export let data;
-    console.log(data)
 
     
 
@@ -63,8 +62,8 @@
 
 
 
-
-<div class="carousel w-full h-full carousel-center p-4 space-x-4 rounded-box">
+<div class="flex justify-start text-2xl font-extrabold z-50 mt-10 ml-10 mb-0">Featured Posts</div>
+<div class="carousel w-full h-full carousel-center p-4  pt-0 space-x-4 rounded-box">
   {#each data.posts as post}
       <button class="carousel-item relative w-full sm:w-1/2 md:w-1/3  hover:scale-[1.05] transition-transform duration-300" on:click={goToPostPage(post.id)}>
           <div class=" gap-10 mx-auto mt-10 mb-10 self-start">
