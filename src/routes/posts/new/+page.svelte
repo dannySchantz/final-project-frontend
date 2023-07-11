@@ -29,9 +29,9 @@
         isLoading = true
         let checkBoxTrueFalse = event.target['featured-checkbox'].checked;
 
-        if (checkBoxTrueFalse === true) {
-            await openStripeCheckout()
-        }
+        // if (checkBoxTrueFalse === true) {
+        //     await openStripeCheckout()
+        // }
 
         const renamedFile = generateFileWithUniqueName(fileNamed)
     

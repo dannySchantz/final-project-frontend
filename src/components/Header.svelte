@@ -70,7 +70,7 @@
         {:else}
             <button class="btn btn-ghost" on:click={goToUserPostPage}>Your Posts</button>
             <button class="btn btn-ghost" on:click={goToUploadPage}>Upload</button>
-            <button on:click={logOut} class="btn btn-ghost">Sign Out</button>
+            <button on:click={logOut} class="btn btn-accent">Sign Out</button>
         {/if}
     </div>
   </div>
