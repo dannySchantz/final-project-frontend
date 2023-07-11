@@ -5,6 +5,8 @@
     function goToPostPage(postId) {
         goto(`/posts/${postId}`)
     }
+
+
 </script>
 
 <div class="w-2/3 align-middle ml-[16.3333333%]">
@@ -34,3 +36,4 @@
         </button>
     {/each}
 </div>
+
