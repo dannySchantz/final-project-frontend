@@ -22,7 +22,6 @@
     function goToUserPostPage() {
         let userId = localStorage.getItem('userId')
         let parsedId = JSON.parse(userId)["userId"]
-        console.log(parsedId)
         goto(`/posts/userPost/${parsedId}`)
     }
     function goToSignInPage() {

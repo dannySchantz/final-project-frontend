@@ -4,13 +4,14 @@
     import { goto } from "$app/navigation"
     import Select from 'svelte-select';
     import { tags, countries } from "../../svelte-select-items.js";
-    import CountryDropdownForForms from "../../../components/CountryDropdownForForms.svelte";
     import { generateFileWithUniqueName, uploadMedia } from '../../../utils/s3-uploader.js'
 
     let formErrors = {};
     let imageUrl = '';
     let fileNamed = '';
     let isLoading = false;
+    let infoData = {};
+    const accessToken = getTokenFromLocalStorage()
 
     checkLoggedIn()
 
@@ -25,47 +26,8 @@
         goto("/")
     }
 
-    async function uploadData(event){
+    async function uploadData(infoData){
         isLoading = true
-        let checkBoxTrueFalse = event.target['featured-checkbox'].checked;
-
-        // if (checkBoxTrueFalse === true) {
-        //     await openStripeCheckout()
-        // }
-
-        const renamedFile = generateFileWithUniqueName(fileNamed)
-    
-        const [fileName, fileUrl] = await uploadMedia(renamedFile)
-
-        const accessToken = getTokenFromLocalStorage()
-
-        const countryValue = event.target['country'].value;
-        const experienceValue = event.target['experiences'].value;
-        let countryParsedValue = ''
-        let experienceParsedValue = []
-        let finalExperienceValue = []
-        if (countryValue) { 
-            countryParsedValue = JSON.parse(countryValue).value
-            countryParsedValue = countryParsedValue.charAt(0).toUpperCase() + countryParsedValue.slice(1);
-        }
-        if (experienceValue) {
-            experienceParsedValue = JSON.parse(experienceValue)
-            for (let i = 0; i < experienceParsedValue.length; i++) {
-                finalExperienceValue.push(experienceParsedValue[i].value)
-            }
-        }
-
-        const infoData = {
-            file: fileUrl,
-            name: fileName,
-            description: event.target['description'].value,
-            title: event.target['title'].value,
-            directions: event.target['directions'].value,
-            coordinates: event.target['coordinates'].value,
-            country: countryParsedValue,
-            tags: finalExperienceValue,
-            featured: checkBoxTrueFalse,
-        }
         const resp = await fetch(PUBLIC_BACKEND_BASE_URL + '/posts',{
             method: 'POST',
             mode: 'cors',
@@ -85,7 +47,48 @@
         }
     }
 
-    async function openStripeCheckout() {
+    async function openStripeCheckout(event) {
+        isLoading = true
+        let checkBoxTrueFalse = event.target['featured-checkbox'].checked;
+
+        const renamedFile = generateFileWithUniqueName(fileNamed)
+    
+        const [fileName, fileUrl] = await uploadMedia(renamedFile)
+
+
+        const countryValue = event.target['country'].value;
+        const experienceValue = event.target['experiences'].value;
+        let countryParsedValue = ''
+        let experienceParsedValue = []
+        let finalExperienceValue = []
+        if (countryValue) { 
+            countryParsedValue = JSON.parse(countryValue).value
+            countryParsedValue = countryParsedValue.charAt(0).toUpperCase() + countryParsedValue.slice(1);
+        }
+        if (experienceValue) {
+            experienceParsedValue = JSON.parse(experienceValue)
+            for (let i = 0; i < experienceParsedValue.length; i++) {
+                finalExperienceValue.push(experienceParsedValue[i].value)
+            }
+        }
+
+        infoData = {
+            file: fileUrl,
+            name: fileName,
+            description: event.target['description'].value,
+            title: event.target['title'].value,
+            directions: event.target['directions'].value,
+            coordinates: event.target['coordinates'].value,
+            country: countryParsedValue,
+            tags: finalExperienceValue,
+            featured: false,
+        }
+
+        if (checkBoxTrueFalse === false) {
+            await uploadData(infoData)
+            isLoading = false
+            return
+        }
 
         const resp = await fetch(PUBLIC_BACKEND_BASE_URL + '/create-checkout-session', {
         method: 'POST',
@@ -95,8 +98,9 @@
         },
         });
         if (resp.status == 200) {
-          const res = await resp.json()
-          window.open(res)
+            await uploadData(infoData)
+            const res = await resp.json()
+            window.open(res)
         } else {
           alert('Failed to continue to checkout.')
         }
@@ -107,7 +111,6 @@
         imageUrl = URL.createObjectURL(file);
         fileNamed = file
     }
-
 </script>
 
 <svelte:head>
@@ -117,7 +120,7 @@
 
 <h1 class="flex items-center justify-center text-4xl mt-5 font-bold text-gray-500 dark:text-gray-400" style="font-family:monospace">Upload</h1>
 <div class="flex items-center justify-center w-full mt-5 text-gray-500 dark:text-gray-400">
-    <form on:submit|preventDefault={uploadData}>
+    <form on:submit|preventDefault={openStripeCheckout}>
     <div class="form-control w-full">
         <label for="dropzone-file" class="flex flex-col items-center justify-center border-2 border-accent border-dashed rounded-lg cursor-pointer hover:border-4 w-full h-[30vw]">
             {#if !imageUrl}
@@ -152,19 +155,19 @@
         </label>
         <input type="text" name="coordinates" placeholder="Coordinates for the location" class="hover:border-2 input max-w-full border-accent" required />
         <div class="flex justify-start mt-2 w-full">
-            <div class="text-xl w-full">Would you like this post to be featured for $10.00?</div>
+            <div class="text-base sm:text-2xl w-full">Would you like this post to be featured for $10.00?</div>
             <input type="checkbox" name="featured-checkbox" class="checkbox checkbox-accent ml-2 mt-1" />
         </div>
         <div class="flex justify-between sm:justify-start gap-4">
             <div>
                 <label class="label " for="Countries">
-                    <span class="mt-2 w-full">Country</span>
+                    <span class="mt-2 h-full">Country</span>
                 </label>
-                <Select required items={countries} searchable={true} placeholder="Countries" name="country" class="select-styles dark:text-gray-400 custom-dropdown bg-base-100" />
+                <Select required items={countries} searchable={true} placeholder="Countries" name="country" class="select-styles dark:text-gray-400 bg-base-100" />
             </div>
             <div>
                 <label class="label" for="Tags">
-                    <span class="mt-2">Tags</span>
+                    <span class="mt-2 h-full">Tags</span>
                 </label>
                 <Select multiple closeListOnChange={false} required items={tags} searchable={true} placeholder="Experiences" name="experiences" class="select-styles dark:text-gray-400 select-tags" />
             </div>

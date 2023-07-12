@@ -1,4 +1,5 @@
 import { PUBLIC_AWS_REGION, PUBLIC_AWS_BUCKET, PUBLIC_IDENTITY_POOL_ID } from '$env/static/public';
+import { } from "../../src/routes/posts/userPost/[slug]/+page.svelte"
 
 
 export async function uploadMedia(file, directory = "") {
@@ -33,7 +34,7 @@ export async function uploadMedia(file, directory = "") {
 
 function getFileExtension(str) {
     return str.slice(str.lastIndexOf("."));
-  }
+}
   
   function generateRandomString(length) {
     let result = '';

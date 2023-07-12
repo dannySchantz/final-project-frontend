@@ -1,7 +1,7 @@
 <script>
     export let data;
     import { goToPostPage } from '../../../../utils/auth.js';
-    console.log(data)
+
 </script>
 <div class="flex justify-center text-3xl font-extrabold">Your Posts!</div>
 <div class="grid sm:grid-cols-2 md:grid-cols-3 w-full h-full carousel-center p-4 gap-4 rounded-box">
@@ -17,7 +17,7 @@
                         <p class="flex justify-self-start">{post.description}</p>
                         <div class="card-actions justify-start flex flex-wrap">
                             {#each post.tags as tag}
-                                <div class="badge-primary badge mr-2">{tag}</div>
+                                <div class="badge-primary badge mr-2 first-letter:uppercase">{tag}</div>
                             {/each}
                         </div>
                     </div>

@@ -234,4 +234,3 @@ export let tags = [
     { value: 'hiking', label: 'Hiking' },
     { value: 'views', label: 'Views'}
 ];
-   
