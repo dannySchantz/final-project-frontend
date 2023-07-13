@@ -32,6 +32,7 @@
 		"svelte-carousel": "^1.0.25",
 		"svelte-google-maps": "^0.2.0",
 		"svelte-paginate": "^0.1.0",
-		"svelte-select": "^5.6.1"
+		"svelte-select": "^5.6.1",
+		"trim": "^1.0.1"
 	}
 }

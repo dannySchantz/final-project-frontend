@@ -1,8 +1,13 @@
 <script>
   import { onMount } from 'svelte';
   import { PUBLIC_MAPS_API_KEY } from '$env/static/public'
+  import {PUBLIC_BACKEND_BASE_URL } from '$env/static/public'
   import { goToPostPage } from '../../../utils/auth';
+  import { getTokenFromLocalStorage } from '../../../utils/auth.js';
+  import { goto } from "$app/navigation"
+
   export let data;
+  let accessToken = getTokenFromLocalStorage()
   let x;
   let map;
   let current;
@@ -11,6 +16,19 @@
   let directionsService = null;
   let directionsRenderer = null;
   let mode = "DRIVING";
+  let countryName = reformatCountryName(data.post.country)
+  
+  function reformatCountryName(countryName) {
+    let reformattedName = countryName.replace(/-/g, ' ').replace(/\b(?!and)\w/g, letter => letter.toUpperCase());
+  
+    if (reformattedName === "Virgin Islands British") {
+      reformattedName = "Virgin Islands, British";
+    } else if (reformattedName === "Virgin Islands Us") {
+      reformattedName = "Virgin Islands, U.S.";
+    }
+  
+    return reformattedName;
+    }
 
 
   function handleChange() {
@@ -19,8 +37,10 @@
   }
 
   var postLocation = data.post.coordinates;
+  console.log(postLocation)
   let postLat = parseFloat(postLocation.split(",")[0]);
   let postLong = parseFloat(postLocation.split(",")[1].trim());
+  console.log(postLong)
   postLocation = postLat + "," + postLong;
 
   function initMap() {
@@ -158,11 +178,28 @@
     document.head.appendChild(script);
   });
 
+    async function deletePost(postId) {
+        console.log(postId)
+        const resp = await fetch(PUBLIC_BACKEND_BASE_URL + `/posts/id/${postId}`,{
+            method: 'DELETE',
+            mode: 'cors',
+            headers:{
+                'Content-Type': 'application/json',
+                Authorization : `Bearer ${accessToken}`
+            },
+        })
+        if (resp.status == 200) {
+            goto('/')
+            alert('Post Deleted Successfully.')
+        } else {
+            alert('Failed Delete Post!')
+        }
+        
+    }
 </script>
 
 <style>
   #googleMap {
-    margin-top: 30px;
     width: 100%;
     height: 400px;
   }
@@ -170,27 +207,27 @@
 
 <p bind:this="{x}"></p>
 
+
+<div id="googleMap"></div>
 <div>
   <strong>Mode of Travel: </strong>
-  <select id="mode"  on:change={calcRoute}>
+  <select id="mode" class="my-2" on:change={calcRoute}>
     <option value="DRIVING">Driving</option>
     <option value="WALKING">Walking</option>
     <option value="BICYCLING">Bicycling</option>
     <option value="TRANSIT">Transit</option>
   </select>
 </div>
-
-<div id="googleMap"></div>
 <p id="distance"></p>
 <p id="duration"></p>
 
 <div>
-  <img src={data.post.file} alt="" class="flex mx-auto w-11/12 h-[60vh] object-cover rounded-lg border-accent border-4" />
-  <div class="flex mx-auto w-11/12 text-center">
-    <div class="p-4 border-4 border-accent rounded-lg">
+  <img src={data.post.file} alt="" class="flex mx-auto w-11/12 h-[60vh] object-cover rounded-lg rounded-b-none border-b-0 border-4 border-accent" />
+  <div class="text-center mx-auto w-11/12 flex justify-center border-4 border-accent border-t-0">
+    <div class="p-4 rounded-lg">
       <h1 class="font-extrabold text-3xl first-letter:uppercase">{data.post.title}</h1>
-      <h1 class="font-extrabold text-2xl">{data.post.country}</h1>
-      <h1 class="font-extrabold text-xl text-justify first-letter:uppercase" style="font-family:Arial, Helvetica, sans-serif">{data.post.description}</h1>
+      <h1 class="font-extrabold text-2xl">{countryName}</h1>
+      <h1 class="font-extrabold text-xl text-center first-letter:uppercase" style="font-family:Arial, Helvetica, sans-serif">{data.post.description}</h1>
       <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 grid-cols-1 w-full">
         <div class="mt-5 flex flex-col items-center">
           <div class="font-extrabold text-xl">Directions</div>
@@ -207,6 +244,7 @@
           {/each}
         </div>
       </div>
+      <button class="btn" on:click={deletePost(data.post.id)}>Delete Post</button>
     </div>
   </div>
 </div>

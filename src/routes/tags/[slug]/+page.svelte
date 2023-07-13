@@ -6,7 +6,7 @@
     import { paginate, LightPaginationNav, DarkPaginationNav } from 'svelte-paginate'  
 
     export let data; 
-    export let currentTheme
+    // export let currentTheme
     console.log(data)
     
     const country =  data.reformattedCountryName
