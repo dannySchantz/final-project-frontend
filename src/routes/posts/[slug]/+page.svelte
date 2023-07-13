@@ -15,8 +15,15 @@
   let redMarker;
   let directionsService = null;
   let directionsRenderer = null;
-  let mode = "DRIVING";
+  let mode;
   let countryName = reformatCountryName(data.post.country)
+
+  function showTravelOptions() {
+  const travelOptionsDiv = document.getElementById("travelOptionsDiv");
+  travelOptionsDiv.style.display = "block";
+  mode = "DRIVING"
+  calcRoute();
+}
   
   function reformatCountryName(countryName) {
     let reformattedName = countryName.replace(/-/g, ' ').replace(/\b(?!and)\w/g, letter => letter.toUpperCase());
@@ -33,7 +40,7 @@
 
   function handleChange() {
     mode = document.getElementById("mode").value;
-    console.log(mode);
+
   }
 
   var postLocation = data.post.coordinates;
@@ -141,6 +148,7 @@
   }
 
   function calcRoute() {
+  mode = document.getElementById("mode").value; 
   if (current && redMarker) {
     const request = {
       origin: current,
@@ -205,12 +213,13 @@
 
 
 <div id="googleMap"></div>
-<div>
+
+<button on:click={showTravelOptions}>How to Get There?</button>
+<div id="travelOptionsDiv" style="display: none;">
   <strong>Mode of Travel: </strong>
   <select id="mode" class="my-2" on:change={calcRoute}>
     <option value="DRIVING">Driving</option>
     <option value="WALKING">Walking</option>
-    <option value="BICYCLING">Bicycling</option>
     <option value="TRANSIT">Transit</option>
   </select>
 </div>
