@@ -49,9 +49,9 @@
     const country = document.getElementById('country').value;
     console.log(country);
     const geocodingUrl =
-  'https://maps.googleapis.com/maps/api/geocode/json?address=' +
-  encodeURIComponent(country) +
-  `&key=${PUBLIC_MAPS_API_KEY}`;
+    'https://maps.googleapis.com/maps/api/geocode/json?address=' +
+    encodeURIComponent(country) +
+    `&key=${PUBLIC_MAPS_API_KEY}`;
 
 
     fetch(geocodingUrl)
