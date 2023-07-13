@@ -204,7 +204,6 @@
 
 <style>
   #googleMap {
-    width: 100%;
     height: 400px;
   }
 </style>
@@ -212,27 +211,18 @@
 <p bind:this="{x}"></p>
 
 
-<div id="googleMap"></div>
+<div id="googleMap" class="w-11/12 mx-auto border-4 border-secondary rounded-lg"></div>
 
-<button on:click={showTravelOptions}>How to Get There?</button>
-<div id="travelOptionsDiv" style="display: none;">
-  <strong>Mode of Travel: </strong>
-  <select id="mode" class="my-2" on:change={calcRoute}>
-    <option value="DRIVING">Driving</option>
-    <option value="WALKING">Walking</option>
-    <option value="TRANSIT">Transit</option>
-  </select>
-</div>
-<p id="distance"></p>
-<p id="duration"></p>
+<button on:click={showTravelOptions} class="ml-16 my-10 btn">How to Get There?</button>
 
 <div>
-  <img src={data.post.file} alt="" class="flex mx-auto w-11/12 h-[60vh] object-cover rounded-lg rounded-b-none border-b-0 border-4 border-accent" />
-  <div class="text-center mx-auto w-11/12 flex justify-center border-4 border-accent border-t-0">
+    
+  <img src={data.post.file} alt="" class="flex mx-auto w-11/12 h-[60vh] object-cover rounded-lg rounded-b-none border-b-0 border-4 border-secondary" />
+  <div class="text-center mx-auto w-11/12 flex justify-center border-4 border-secondary border-t-0">
     <div class="p-4 rounded-lg">
       <h1 class="font-extrabold text-3xl first-letter:uppercase">{data.post.title}</h1>
       <h1 class="font-extrabold text-2xl">{countryName}</h1>
-      <h1 class="font-extrabold text-xl text-center first-letter:uppercase" style="font-family:Arial, Helvetica, sans-serif">{data.post.description}</h1>
+      <h1 class="font-extrabold text-xl first-letter:uppercase text-justify mt-5" style="font-family:Arial, Helvetica, sans-serif">{data.post.description}</h1>
       <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 grid-cols-1 w-full">
         <div class="mt-5 flex flex-col items-center">
           <div class="font-extrabold text-xl">Directions</div>
@@ -240,6 +230,16 @@
         </div>
         <div class="mt-5 flex flex-col items-center">
           <div class="font-extrabold text-xl">Coordinates</div>
+          <div id="travelOptionsDiv" style="display: none;">
+            <strong>Mode of Travel: </strong>
+            <select id="mode" class="my-2" on:change={calcRoute}>
+              <option value="DRIVING">Driving</option>
+              <option value="WALKING">Walking</option>
+              <option value="TRANSIT">Transit</option>
+            </select>
+          </div>
+          <p id="distance"></p>
+          <p id="duration"></p>
           {data.post.coordinates}
         </div>
         <div class="mt-5 flex flex-col items-center">

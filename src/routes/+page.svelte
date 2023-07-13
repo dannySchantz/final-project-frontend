@@ -41,9 +41,9 @@
     <img src="https://www.qantas.com/content/travelinsider/en/explore/south-pacific/reasons-to-visit-new-caledonia/_jcr_content/parsysTop/hero.img.full.medium.jpg/1559623611557.jpg" alt="" class=" w-full h-[60vh]" />
 
     <!-- Text overlay -->
-    <div class="absolute m-5 left-0 top-0 sm:justify-center sm:top-[30%] sm:self-center sm:left-10 sm:m-0 sm:w-[40%] text-white text-lg bg-black bg-opacity-70 px-6 py-4 rounded-lg w-fit sm:hidden md:block z-10">
-      <h1>Your text goes here.</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at efficitur purus, eu vestibulum est. Etiam luctus laoreet venenatis. Nullam pharetra scelerisque scelerisque.</p>
+    <div class="absolute m-5 left-0 top-0 sm:justify-center sm:top-[30%] sm:self-center sm:left-10 sm:m-0 sm:w-[40%] text-white text-lg bg-black bg-opacity-70 px-6 py-4 rounded-lg w-fit sm:hidden md:block z-10 text-justify">
+      <h1>DiscoverFy</h1>
+      <p>Unlock extraordinary experiences worldwide with Discoverfy. Discover, explore, and create unforgettable memories. Embrace the joy of exploration.</p>
     </div>
 
     <!-- Search box with background -->
