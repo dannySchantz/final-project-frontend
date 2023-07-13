@@ -4,12 +4,15 @@ import { goto } from '$app/navigation';
 
 const emptyAuth = {
   'accessToken': '',
-  'userId': ''
+};
+const emptyUserId = {
+    'userId': '',
 };
 
 
 export function logOut() {
   localStorage.setItem('auth', JSON.stringify(emptyAuth));
+  localStorage.setItem('userId',JSON.stringify(emptyUserId))
   loggedIn.set(false);
   return true;
 }
@@ -42,7 +45,6 @@ export async function logInUser(email, password) {
         }
     );
     const res = await resp.json();
-    console.log(res)
     if (resp.status === 200) {
         localStorage.setItem(
             'auth',

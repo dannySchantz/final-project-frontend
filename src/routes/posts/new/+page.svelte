@@ -96,11 +96,12 @@
         headers: {
           'Content-Type': 'application/json'
         },
+        body: JSON.stringify(infoData)
         });
         if (resp.status == 200) {
             await uploadData(infoData)
             const res = await resp.json()
-            window.open(res)
+            window.location.replace(res)
         } else {
           alert('Failed to continue to checkout.')
         }
@@ -118,7 +119,7 @@
 </svelte:head>
 
 
-<h1 class="flex items-center justify-center text-4xl mt-5 font-bold text-gray-500 dark:text-gray-400" style="font-family:monospace">Upload</h1>
+<h1 class="flex items-center justify-center text-4xl font-bold text-gray-500 dark:text-gray-400" style="font-family:monospace">Upload</h1>
 <div class="flex items-center justify-center w-full mt-5 text-gray-500 dark:text-gray-400">
     <form on:submit|preventDefault={openStripeCheckout}>
     <div class="form-control w-full">

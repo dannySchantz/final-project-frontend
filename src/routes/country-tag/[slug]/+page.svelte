@@ -7,8 +7,9 @@
 
     export let data; 
     
-    const country =  data.reformattedCountryName
-
+    const country =  data.reformattedCountry
+    const experience = data.reformattedTag
+    
     let map;
     let directionsService = null;
     let directionsRenderer = null;
@@ -107,17 +108,15 @@
 
 <style>
     #googleMap {
-        margin-top: 30px;
         width: 100%;
         height: 400px;
     }
 </style>
 
-
 <div id="googleMap"></div>
 
 <div class="w-2/3 align-middle ml-[16.3333333%]">
-    <div class="text-center font-extrabold text-3xl mt-5 first-letter:uppercase">{data.reformattedCountryName}</div>
+    <div class="text-center font-extrabold text-3xl first-letter:uppercase">{country}: {experience}</div>
     <div class="text-center mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae facere, quasi atque nulla vel quisquam quibusdam voluptatibus voluptate labore nesciunt adipisci soluta maxime temporibus corporis dicta, nihil et voluptatem eius.</div>
   </div>
   

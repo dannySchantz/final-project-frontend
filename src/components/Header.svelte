@@ -22,6 +22,7 @@
     function goToUserPostPage() {
         let userId = localStorage.getItem('userId')
         let parsedId = JSON.parse(userId)["userId"]
+        console.log(parsedId)
         goto(`/posts/userPost/${parsedId}`)
     }
     function goToSignInPage() {
@@ -41,7 +42,8 @@
 
     updateTheme();
 </script>
-<div class="navbar flex justify-between bg-base-100 backdrop-blur z-10 bg-opacity-60 sm:text-lg">
+<div class="w-full bg-transparent h-[4rem]">
+<div class="navbar flex justify-between bg-base-100 backdrop-blur z-[100] bg-opacity-60 sm:text-lg fixed top-0">
     <button on:click={goToHomePage} class="btn btn-ghost sm:text-2xl md:text-2xl navbar-start w-fit gap-0">
         <span class="lowercase first-letter:uppercase">Discover</span>
         <span class="lowercase first-letter:uppercase">Fy</span>
@@ -73,3 +75,4 @@
         {/if}
     </div>
   </div>
+</div>

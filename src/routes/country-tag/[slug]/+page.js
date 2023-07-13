@@ -5,7 +5,8 @@ export async function load({ fetch, params },) {
     if (resp.status == 200) {
         return {
             posts: res,
-            reformattedCountryName: reformatCountryName(params.slug)
+            reformattedCountry: reformatCountryName(params.slug),
+            reformattedTag: reformatTagName(params.slug)
         }
     } else {
         return {
@@ -14,14 +15,15 @@ export async function load({ fetch, params },) {
     } 
 }
 
-function reformatCountryName(countryName) {
-    let reformattedName = countryName.replace(/-/g, ' ').replace(/\b(?!and)\w/g, letter => letter.toUpperCase());
-  
-    if (reformattedName === "Virgin Islands British") {
-      reformattedName = "Virgin Islands, British";
-    } else if (reformattedName === "Virgin Islands Us") {
-      reformattedName = "Virgin Islands, U.S.";
-    }
-  
-    return reformattedName;
+function reformatCountryName(countryTagName) {
+    const [country, experience] = countryTagName.split('_');
+    const formattedCountryName = `${country.charAt(0).toUpperCase()}${country.slice(1)}`; 
+
+    return formattedCountryName
+}
+function reformatTagName(countryTagName) {
+    const [country, experience] = countryTagName.split('_');
+    const formattedExperienceName =`${experience.charAt(0).toUpperCase()}${experience.slice(1)}`; 
+
+    return formattedExperienceName
 }
