@@ -27,7 +27,9 @@
 	"type": "module",
 	"dependencies": {
 		"@tailwindcss/typography": "^0.5.9",
+		"pagination": "^0.4.6",
 		"st": "^3.0.0",
+		"svelte-carousel": "^1.0.25",
 		"svelte-google-maps": "^0.2.0",
 		"svelte-paginate": "^0.1.0",
 		"svelte-select": "^5.6.1"
