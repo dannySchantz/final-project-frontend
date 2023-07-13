@@ -26,25 +26,4 @@ margin-top:50px;
       "
     
     >© 2023 DiscoverFy - All Rights Reserved</p>
-    <div class="grid grid-cols-2 flex" >
-      <a href="/" class="flex items-center justify-center text-primary-content"
-      style="
-        color: #212B36;
-        font-size: 16px;
-        font-family: Inter;
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
-      ">Countries</a>
-      <a href="/"  
-      class="flex items-center justify-center text-primary-content "
-      style="
-        color: #212B36;
-        font-size: 16px;
-        font-family: Inter;
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
-      ">Experience</a>
-    </div>
 </footer>
