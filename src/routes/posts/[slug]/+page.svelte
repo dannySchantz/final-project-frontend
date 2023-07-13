@@ -79,10 +79,6 @@
 
     map.setOptions(mapProp);
 
-    google.maps.event.addListener(map, 'click', function (event) {
-      placeMarker(event.latLng);
-    });
-
     placeCurrentLocationMarker(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
   }
 
