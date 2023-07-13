@@ -144,10 +144,10 @@
   </div>
   
   <DarkPaginationNav
-  totalItems={data.posts.length}
-  pageSize={pageSize}
-  currentPage={currentPage}
-  limit={1}
-  showStepOptions={true}
-  on:setPage={(e) => currentPage = e.detail.page
-/>
+    totalItems={data.posts.length}
+    pageSize={pageSize}
+    currentPage={currentPage}
+    limit={1}
+    showStepOptions={true}
+    on:setPage={(e) => currentPage = e.detail.page}
+  />
