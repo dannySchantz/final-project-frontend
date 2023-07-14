@@ -3,7 +3,7 @@
     import { onMount } from 'svelte';
     import { PUBLIC_MAPS_API_KEY } from '$env/static/public'
     import { goToPostPage } from '../../../utils/auth.js';
-    import { paginate, DarkPaginationNav } from 'svelte-paginate'    
+    import { paginate, DarkPaginationNav, LightPaginationNav } from 'svelte-paginate'    
 
     export let data; 
     
@@ -14,10 +14,21 @@
     let directionsRenderer = null;
     let redMarker;
 
+    let currentTheme = localStorage.getItem('theme')
     let posts = data.posts;
     let currentPage = 1;
     let pageSize = 3;
     $: paginationData = paginate({ items: posts, pageSize, currentPage });
+
+    onMount(() => {
+      const interval = setInterval(() => {
+        currentTheme = localStorage.getItem('theme');
+      }, 50);
+
+      return () => {
+        clearInterval(interval);
+      };
+    });
 
 
 
@@ -105,12 +116,6 @@
 
 </script>
 
-<style>
-    #googleMap {
-        width: 100%;
-        height: 400px;
-    }
-</style>
 
 
 <div id="googleMap"></div>
@@ -141,6 +146,7 @@
     {/each}
   </div>
   
+  {#if currentTheme == 'dracula'}
   <DarkPaginationNav
     totalItems={data.posts.length}
     pageSize={pageSize}
@@ -149,3 +155,38 @@
     showStepOptions={true}
     on:setPage={(e) => currentPage = e.detail.page}
   />
+  {/if}
+  
+  {#if currentTheme == 'autumn'}
+  <LightPaginationNav
+    class="bg-base-100"
+    totalItems={data.posts.length}
+    pageSize={pageSize}
+    currentPage={currentPage}
+    limit={1}
+    showStepOptions={true}
+    on:setPage={(e) => currentPage = e.detail.page}
+  />
+  {/if}
+  
+  <style>
+  
+  :global(.svelte-select-list) {
+          --tw-bg-opacity: 1 !important;
+          background-color: hsl(var(--b1) / var(--tw-bg-opacity)) !important;
+      }
+  :global(.light-pagination-nav) {
+    --tw-bg-opacity: 1 !important;
+      background-color: hsl(var(--b1) / var(--tw-bg-opacity)) !important;
+  }
+  :global(.pagination-nav) {
+    --tw-bg-opacity: 1 !important;
+      background-color: hsl(var(--b1) / var(--tw-bg-opacity)) !important;
+      box-shadow: none !important;
+  }
+  #googleMap {
+        width: 100%;
+        height: 400px;
+    }
+  </style>
+    
