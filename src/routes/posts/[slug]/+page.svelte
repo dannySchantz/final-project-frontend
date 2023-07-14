@@ -223,7 +223,7 @@
     <div class="p-4 rounded-lg">
       <h1 class="font-extrabold text-3xl first-letter:uppercase">{data.post.title}</h1>
       <h1 class="font-extrabold text-2xl">{countryName}</h1>
-      <h1 class="font-extrabold text-xl first-letter:uppercase text-justify mt-5" style="font-family:Arial, Helvetica, sans-serif">{data.post.description}</h1>
+      <h1 class="flex font-extrabold text-xl first-letter:uppercase text-center mt-5" style="font-family:Arial, Helvetica, sans-serif">{data.post.description}</h1>
       <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 grid-cols-1 w-full">
         <div class="mt-5 flex flex-col items-center">
           <div class="font-extrabold text-xl">Directions</div>
