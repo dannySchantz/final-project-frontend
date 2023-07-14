@@ -4,7 +4,24 @@
     import Select from 'svelte-select';
     import { countries, tags } from './svelte-select-items.js'
     import { goToPostPage } from '../utils/auth.js';
+    import { onMount } from 'svelte';
+    import { paginate, DarkPaginationNav, LightPaginationNav } from 'svelte-paginate'  
     export let data;
+    let currentTheme = localStorage.getItem('theme')
+    let posts = data.posts;
+    let currentPage = 1;
+    let pageSize = 3;
+    $: paginationData = paginate({ items: posts, pageSize, currentPage });
+
+    onMount(() => {
+      const interval = setInterval(() => {
+        currentTheme = localStorage.getItem('theme');
+      }, 50);
+
+      return () => {
+        clearInterval(interval);
+      };
+    });
 
     
 
@@ -63,27 +80,48 @@
 
 
 <div class="flex justify-start text-2xl font-extrabold z-50 mt-10 ml-4 mb-0">Featured Posts</div>
-<div class="carousel w-full h-full carousel-center p-4  pt-0 space-x-4 rounded-box">
-  {#each data.posts as post}
-      <button class="carousel-item relative w-full sm:w-1/2 md:w-[33%]  hover:scale-[1.05] transition-transform duration-300" on:click={goToPostPage(post.id)}>
-          <div class=" mx-auto pt-5 pb-5 self-start mr-5">
-              <div class="card w-fit bg-base-100 shadow-black shadow-lg max-h-80">
-                  <!-- <figure><img src="https://www.qantas.com/content/travelinsider/en/explore/south-pacific/reasons-to-visit-new-caledonia/_jcr_content/parsysTop/hero.img.full.medium.jpg/1559623611557.jpg" alt="" /></figure> -->
-                  <figure><img src={post.file} alt="" /></figure>
-                  <div class="card-body">
-                      <h2 class="card-title">{post.title}</h2>
-                      <p class="flex justify-self-start">{post.description}</p>
-                      <div class="card-actions justify-start flex flex-wrap">
-                          {#each post.tags as tag}
-                              <div class="badge-primary badge mr-2">{tag}</div>
-                          {/each}
-                      </div>
-                  </div>
-              </div>
+<div class="carousel w-full h-full justify-between p-10 space-x-4 rounded-box" id="myCarousel">
+  {#each paginationData as post}
+    <button class="carousel-item relative w-[30%] hover:scale-[1.05] transition-transform duration-300 " on:click={() => goToPostPage(post.id)}>
+      <div class="gap-10 mx-auto pt-10 pb-10 self-start">
+        <div class="card w-full h-[400px] bg-base-100 shadow-black shadow-lg">
+          <figure><img src={post.file} alt="hi" /></figure>
+          <div class="card-body h-[60%] overflow-hidden">
+            <h2 class="card-title text-xl font-bold mb-2">{post.title}</h2>
+            <p class="flex justify-self-start text-justify">{post.description}</p>
+            </div> 
+        <div class="card-actions justify-start flex flex-wrap p-2">
+              {#each post.tags as tag}
+                <div class="badge-primary badge mr-2">{tag}</div>
+              {/each}
+            </div>
           </div>
-      </button>
+        </div>
+    </button>
   {/each}
 </div>
+{#if currentTheme == 'dracula'}
+<DarkPaginationNav
+  totalItems={data.posts.length}
+  pageSize={pageSize}
+  currentPage={currentPage}
+  limit={1}
+  showStepOptions={true}
+  on:setPage={(e) => currentPage = e.detail.page}
+/>
+{/if}
+
+{#if currentTheme == 'autumn'}
+<LightPaginationNav
+  class="bg-base-100"
+  totalItems={data.posts.length}
+  pageSize={pageSize}
+  currentPage={currentPage}
+  limit={1}
+  showStepOptions={true}
+  on:setPage={(e) => currentPage = e.detail.page}
+/>
+{/if}
 
 <style>
 
@@ -91,6 +129,15 @@
         --tw-bg-opacity: 1 !important;
         background-color: hsl(var(--b1) / var(--tw-bg-opacity)) !important;
     }
+:global(.light-pagination-nav) {
+  --tw-bg-opacity: 1 !important;
+    background-color: hsl(var(--b1) / var(--tw-bg-opacity)) !important;
+}
+:global(.pagination-nav) {
+  --tw-bg-opacity: 1 !important;
+    background-color: hsl(var(--b1) / var(--tw-bg-opacity)) !important;
+    box-shadow: none !important;
+}
 
 @media (max-width: 414px) {
     .sm\:hidden {

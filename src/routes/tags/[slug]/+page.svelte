@@ -5,9 +5,24 @@
     import { goToPostPage } from '../../../utils/auth.js';
     import { paginate, LightPaginationNav, DarkPaginationNav } from 'svelte-paginate'  
 
-    export let data; 
-    // export let currentTheme
-    console.log(data)
+    export let data;
+    let currentTheme = localStorage.getItem('theme')
+    let posts = data.posts;
+    let currentPage = 1;
+    let pageSize = 3;
+    $: paginationData = paginate({ items: posts, pageSize, currentPage });
+
+    onMount(() => {
+      const interval = setInterval(() => {
+        currentTheme = localStorage.getItem('theme');
+      }, 50);
+
+      return () => {
+        clearInterval(interval);
+      };
+    });
+
+    
     
     const country =  data.reformattedCountryName
 
@@ -15,12 +30,6 @@
     let directionsService = null;
     let directionsRenderer = null;
     let redMarker;
-
-    let posts = data.posts;
-    let currentPage = 1;
-    let pageSize = 3;
-    $: paginationData = paginate({ items: posts, pageSize, currentPage });
-
 
 
     function findCountry() {
@@ -106,13 +115,6 @@
     
 </script>
 
-<style>
-    #googleMap {
-        margin-top: 30px;
-        width: 100%;
-        height: 400px;
-    }
-</style>
 
 
 <div id="googleMap"></div>
@@ -132,7 +134,7 @@
               <h2 class="card-title text-xl font-bold mb-2">{post.title}</h2>
               <p class="flex justify-self-start text-justify">{post.description}</p>
               </div> 
-					<div class="card-actions justify-start flex flex-wrap p-2">
+          <div class="card-actions justify-start flex flex-wrap p-2">
                 {#each post.tags as tag}
                   <div class="badge-primary badge mr-2">{tag}</div>
                 {/each}
@@ -142,7 +144,7 @@
       </button>
     {/each}
   </div>
-  
+  {#if currentTheme == 'dracula'}
   <DarkPaginationNav
     totalItems={data.posts.length}
     pageSize={pageSize}
@@ -151,3 +153,34 @@
     showStepOptions={true}
     on:setPage={(e) => currentPage = e.detail.page}
   />
+  {/if}
+  
+  {#if currentTheme == 'autumn'}
+  <LightPaginationNav
+    class="bg-base-100"
+    totalItems={data.posts.length}
+    pageSize={pageSize}
+    currentPage={currentPage}
+    limit={1}
+    showStepOptions={true}
+    on:setPage={(e) => currentPage = e.detail.page}
+  />
+  {/if}
+  
+<style>
+
+:global(.svelte-select-list) {
+    --tw-bg-opacity: 1 !important;
+    background-color: hsl(var(--b1) / var(--tw-bg-opacity)) !important;
+}
+:global(.light-pagination-nav) {
+--tw-bg-opacity: 1 !important;
+background-color: hsl(var(--b1) / var(--tw-bg-opacity)) !important;
+}
+:global(.pagination-nav) {
+--tw-bg-opacity: 1 !important;
+background-color: hsl(var(--b1) / var(--tw-bg-opacity)) !important;
+box-shadow: none !important;
+}
+
+</style>

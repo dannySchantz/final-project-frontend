@@ -205,6 +205,7 @@
 <style>
   #googleMap {
     height: 400px;
+    width: 100%;
   }
 </style>
 
