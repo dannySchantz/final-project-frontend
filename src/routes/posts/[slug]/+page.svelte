@@ -3,7 +3,7 @@
   import { PUBLIC_MAPS_API_KEY } from '$env/static/public'
   import {PUBLIC_BACKEND_BASE_URL } from '$env/static/public'
   import { goToPostPage } from '../../../utils/auth';
-  import { getTokenFromLocalStorage } from '../../../utils/auth.js';
+  import { getTokenFromLocalStorage} from '../../../utils/auth.js';
   import { goto } from "$app/navigation"
 
   export let data;
@@ -17,6 +17,9 @@
   let directionsRenderer = null;
   let mode;
   let countryName = reformatCountryName(data.post.country)
+  let userId = localStorage.getItem('userId')
+  let parsedUserId = JSON.parse(userId)["userId"]
+  console.log(parsedUserId)
 
   function showTravelOptions() {
   const travelOptionsDiv = document.getElementById("travelOptionsDiv");
@@ -250,7 +253,9 @@
           {/each}
         </div>
       </div>
+      {#if parsedUserId == data.post.userId}
       <button class="btn" on:click={deletePost(data.post.id)}>Delete Post</button>
+      {/if}
     </div>
   </div>
 </div>
