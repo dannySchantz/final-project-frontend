@@ -13,6 +13,7 @@ const emptyUserId = {
 export function logOut() {
   localStorage.setItem('auth', JSON.stringify(emptyAuth));
   localStorage.setItem('userId',JSON.stringify(emptyUserId))
+  location.reload();
   loggedIn.set(false);
   return true;
 }

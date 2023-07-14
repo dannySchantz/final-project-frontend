@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { PUBLIC_MAPS_API_KEY } from '$env/static/public'
   import {PUBLIC_BACKEND_BASE_URL } from '$env/static/public'
-  import { goToPostPage } from '../../../utils/auth';
+  import { goToPostPage, isLoggedIn } from '../../../utils/auth';
   import { getTokenFromLocalStorage} from '../../../utils/auth.js';
   import { goto } from "$app/navigation"
 
@@ -253,7 +253,7 @@
           {/each}
         </div>
       </div>
-      {#if parsedUserId == data.post.userId}
+      {#if isLoggedIn() && parsedUserId == data.post.userId}
       <button class="btn" on:click={deletePost(data.post.id)}>Delete Post</button>
       {/if}
     </div>
